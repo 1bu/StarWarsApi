@@ -1,26 +1,49 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
+import CardInfo from "../component/Card.jsx";
 
 export const Home = () => {
-	const { store, actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
 
-	return (
-		<div className="text-center mt-5">
-			<h1>Hello Rigo!!</h1>
-			<p>
-				<img src={rigoImageUrl} />
-			</p>
-			<div className="alert alert-info">
-				{store.message || "Loading message from the backend (make sure your python backend is running)..."}
-			</div>
-			<p>
-				This boilerplate comes with lots of documentation:{" "}
-				<a href="https://github.com/4GeeksAcademy/react-flask-hello/tree/95e0540bd1422249c3004f149825285118594325/docs">
-					Read documentation
-				</a>
-			</p>
-		</div>
-	);
+  useEffect(() => {
+    actions.getPeople();
+    actions.getPlanets();
+  }, []);
+
+  return (
+    <div>
+      <h1 className="title">Characters</h1>
+      <div className="row x-scroll">
+        {store.people.map((person, index) => {
+          return (
+            <CardInfo
+              className="card"
+              key={person.name}
+              detail={person}
+              type="people"
+              id={index + 1}
+            />
+          );
+        })}
+      </div>
+      <h1 className="title">Planets</h1>
+      <div className="row x-scroll ">
+        {store.planets.map((planet, index) => {
+          return (
+            <CardInfo
+              className="card"
+              key={planet.name}
+              detail={planet}
+              type="planets"
+              id={index + 1}
+            />
+          );
+        })}
+      </div>
+      {store.favorites.map((favorite) => {
+        return <h1 key={favorite.name}>{favorite.name}</h1>;
+      })}
+    </div>
+  );
 };

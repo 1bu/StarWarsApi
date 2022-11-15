@@ -1,7 +1,38 @@
-/*
-    home.css: This website contains selectors only used in home.css
+body {
+  background-image: url("../img/swbackground.jpg");
+  background-size: cover;
+  background-color: black;
+}
 
-    All pages share the styles on index.css but you should create 
-    one more css for each page that will contain the selected used 
-    on that page only (the ones not reused in other pages).
-*/
+.x-scroll {
+  overflow-x: scroll;
+  flex-wrap: nowrap;
+}
+
+.btns {
+  background-color: white;
+  color: #f9e612;
+  border-color: #f9e612;
+}
+
+.btns:hover {
+  background-color: #f9e612;
+  color: white;
+  border-color: #f9e612;
+}
+
+.img {
+  width: 70px;
+  height: 70px;
+}
+
+.card {
+  background: none;
+  color: #f9e612;
+  height: 500px;
+  margin: 5px;
+}
+
+.title {
+  color: #f9e612;
+}
